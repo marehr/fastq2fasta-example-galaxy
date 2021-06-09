@@ -1,0 +1,71 @@
+<tool id="fastq_to_fasta" name="Convert to FASTA (seqan3)" version="1.0.0" python_template_version="3.5">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        ln -s '$input1' input.fastq;
+        $__tool_directory__/fastq_to_fasta --version-check false 'input.fastq' > 'output.fasta'
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="fastq" />
+    </inputs>
+    <outputs>
+        <data name="output1" format="fasta" from_work_dir="output.fasta" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="2.fastq" ftype="fastq"/>
+            <output name="output1" file="2.fasta"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        Fastq-to-Fasta-Converter
+========================
+
+POSITIONAL ARGUMENTS
+    ARGUMENT-1 (std::filesystem::path)
+          Please provide a fastq file. The input file must exist and read
+          permissions must be granted. Valid file extensions are: [fq, fastq].
+
+OPTIONS
+
+  Basic options:
+    -h, --help
+          Prints the help page.
+    -hh, --advanced-help
+          Prints the help page including advanced options.
+    --version
+          Prints the version information.
+    --copyright
+          Prints the copyright/license information.
+    --export-help (std::string)
+          Export the help page information. Value must be one of [html, man].
+    --version-check (bool)
+          Whether to check for the newest app version. Default: true.
+    -o, --output (std::filesystem::path)
+          The file for fasta output. Default: stdout Default: "".
+    -v, --verbose
+          Give more detailed information here.
+
+VERSION
+    Last update:
+    Fastq-to-Fasta-Converter version: 1.0.0
+    SeqAn version: 3.0.3
+
+LEGAL
+    Author: SeqAn-Team
+    SeqAn Copyright: 2006-2021 Knut Reinert, FU-Berlin; released under the
+    3-clause BSDL.
+
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubfastq2fasta-example-galaxy,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {fastq2fasta-example-galaxy},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/marehr/fastq2fasta-example-galaxy},
+}</citation>
+    </citations>
+</tool>
