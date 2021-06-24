@@ -1,30 +1,30 @@
-<tool id="fastq_to_fasta" name="Convert to FASTA (seqan3)" version="1.0.0" python_template_version="3.5">
+<tool id="gc_counter" name="Counts Gs and Cs in a FASTA file (seqan3)" version="1.0.0" python_template_version="3.5">
     <requirements>
     </requirements>
     <command detect_errors="exit_code"><![CDATA[
-        ln -s '$input1' input.fastq;
-        $__tool_directory__/fastq_to_fasta --version-check false 'input.fastq' > 'output.fasta'
+        ln -s '$input1' input.fasta;
+        $<TARGET_FILE:gc_counter> --version-check false input.fasta > '$output1'
     ]]></command>
     <inputs>
-        <param type="data" name="input1" format="fastq" />
+        <param type="data" name="input1" format="fasta" />
     </inputs>
     <outputs>
-        <data name="output1" format="fasta" from_work_dir="output.fasta" />
+        <data name="output1" format="csv" from_work_dir="2_gccount.csv" />
     </outputs>
     <tests>
         <test>
-            <param name="input1" value="2.fastq" ftype="fastq"/>
-            <output name="output1" file="2.fasta"/>
+            <param name="input1" value="2.fasta"/>
+            <output name="output1" file="2_gccount.csv"/>
         </test>
     </tests>
     <help><![CDATA[
-        Fastq-to-Fasta-Converter
-========================
+GC-Counter
+==========
 
 POSITIONAL ARGUMENTS
     ARGUMENT-1 (std::filesystem::path)
-          Please provide a fastq file. The input file must exist and read
-          permissions must be granted. Valid file extensions are: [fq, fastq].
+          Please provide a fasta file. The input file must exist and read
+          permissions must be granted. Valid file extensions are: [fa, fasta].
 
 OPTIONS
 
@@ -48,7 +48,7 @@ OPTIONS
 
 VERSION
     Last update:
-    Fastq-to-Fasta-Converter version: 1.0.0
+    GC-Counter version: 1.0.0
     SeqAn version: 3.0.3
 
 LEGAL
