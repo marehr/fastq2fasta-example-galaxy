@@ -1,0 +1,78 @@
+<tool id="gc_counter" name="Counts Gs and Cs in a FASTA file (seqan3)" version="1.0.0" python_template_version="3.5">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        ln -s '$input1' input.fasta; $__tool_directory__/gc_counter --version-check false input.fasta > '$output1'
+    ]]></command>
+    <inputs>
+        <param type="data" name="input1" format="fasta" />
+    </inputs>
+    <outputs>
+        <data name="output1" format="csv" from_work_dir="2_gccount.csv" />
+    </outputs>
+    <tests>
+        <test>
+            <param name="input1" value="2.fasta"/>
+            <output name="output1" file="2_gccount.csv"/>
+        </test>
+    </tests>
+    <help><![CDATA[
+        
+#######################################################################
+   Automatic Update Notifications
+#######################################################################
+ This app performs automatic checks for updates. For more information
+ see: https://github.com/seqan/seqan3/wiki/Update-Notifications
+#######################################################################
+
+GC-Counter
+==========
+
+POSITIONAL ARGUMENTS
+    ARGUMENT-1 (std::filesystem::path)
+          Please provide a fasta file. The input file must exist and read
+          permissions must be granted. Valid file extensions are: [fa, fasta].
+
+OPTIONS
+
+  Basic options:
+    -h, --help
+          Prints the help page.
+    -hh, --advanced-help
+          Prints the help page including advanced options.
+    --version
+          Prints the version information.
+    --copyright
+          Prints the copyright/license information.
+    --export-help (std::string)
+          Export the help page information. Value must be one of [html, man].
+    --version-check (bool)
+          Whether to check for the newest app version. Default: true.
+    -o, --output (std::filesystem::path)
+          The file for fasta output. Default: stdout Default: "".
+    -v, --verbose
+          Give more detailed information here.
+
+VERSION
+    Last update:
+    GC-Counter version: 1.0.0
+    SeqAn version: 3.0.3
+
+LEGAL
+    Author: SeqAn-Team
+    SeqAn Copyright: 2006-2021 Knut Reinert, FU-Berlin; released under the
+    3-clause BSDL.
+
+    ]]></help>
+    <citations>
+        <citation type="bibtex">
+@misc{githubfastq2fasta-example-galaxy,
+  author = {LastTODO, FirstTODO},
+  year = {TODO},
+  title = {fastq2fasta-example-galaxy},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  url = {https://github.com/marehr/fastq2fasta-example-galaxy},
+}</citation>
+    </citations>
+</tool>
